@@ -1,15 +1,15 @@
 pipeline {
   environment {
-    registry = "houmamamine/houmam_tp5"
-    registryCredential = 'houmam'
+    registry = "darrazi/tp5"
+    registryCredential = 'DockerHub'
     dockerImage = ''
-    gitBranch = 'master'
+    gitBranch = 'main'
   }
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        git branch: "${gitBranch}", url: 'https://github.com/HoumamAmine/TP5_DevOps_Jenkins.git'
+        git branch: "${gitBranch}", url: 'https://github.com/DarraziAnass/tp5devops.git'
       }
     }
     stage('Building image') {
@@ -36,5 +36,10 @@ pipeline {
         }
       }
     }
+    stage('Deploy image') {
+       steps{
+       bat "docker run -d $registry:$BUILD_NUMBER"
+       }
+     }
   }
 }
