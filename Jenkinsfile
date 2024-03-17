@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git branch: "${gitBranch}", url: 'https://github.com/DarraziAnass/tp5devops.git'
+        git branch: "${gitBranch}", url: 'https://github.com/chaoukinaima/tp5devops.git'
       }
     }
     stage('Building image') {
